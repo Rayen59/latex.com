@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éditeur LaTeX</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        #output {
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 50px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Éditeur LaTeX</h1>
+    <p>Écrivez votre code LaTeX ci-dessous :</p>
+    <textarea id="latex-input" oninput="renderMath()">$$ \frac{a}{b} $$</textarea>
+    
+    <h2>Rendu Mathématique :</h2>
+    <div id="output"></div>
+
+    <script>
+        function renderMath() {
+            const input = document.getElementById('latex-input').value;
+            document.getElementById('output').innerHTML = input;
+            MathJax.typesetPromise([document.getElementById('output')]);
+        }
+
+        window.onload = renderMath; // Pour afficher la zone de sortie à l'ouverture de la page
+    </script>
+
+</body>
+</html>
